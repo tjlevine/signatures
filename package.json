@@ -3,8 +3,9 @@
   "version": "1.1.0",
   "description": "",
   "scripts": {
-    "test": "npx mocha -r ts-node/register test/**/*.ts",
-    "lint": "npx tslint -p ."
+    "test": "npx mocha -r ts-node/register -r source-map-support/register test/**/*.ts",
+    "lint": "npx tslint -p .",
+    "test-coverage": "npx nyc npm test && npx nyc report"
   },
   "author": "",
   "license": "ISC",
@@ -20,8 +21,22 @@
     "@types/node": "^10.7.1",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
+    "nyc": "^13.0.1",
+    "source-map-support": "^0.5.9",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "typescript": "^3.0.1"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "json"
+    ],
+    "all": true
   }
 }
