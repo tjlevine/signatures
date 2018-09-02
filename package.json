@@ -2,17 +2,15 @@
   "name": "signatures",
   "version": "1.1.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "( test -f ./dist/index.js || npx tsc -p . ) && node ./dist/index.js",
+    "test": "npx mocha -r ts-node/register test/**/*.ts",
     "lint": "npx tslint -p ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bigi": "^1.4.2",
-    "ecurve": "^1.0.6",
-    "winston": "^3.0.0"
+    "ecurve": "^1.0.6"
   },
   "devDependencies": {
     "@types/bigi": "^1.4.2",
