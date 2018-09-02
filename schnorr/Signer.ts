@@ -2,7 +2,7 @@ import BigInteger from 'bigi';
 import crypto from 'crypto';
 import ecurve from 'ecurve';
 import hash from '../hash';
-import { PrivateKey } from '../keys';
+import { PrivateKey } from '../keys/secp';
 import Signature from './Signature';
 
 const curve: ecurve.Curve = ecurve.getCurveByName('secp256k1');

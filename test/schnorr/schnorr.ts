@@ -5,7 +5,7 @@ import { randomBytes } from 'crypto';
 
 import fixtures from '../fixtures';
 
-import { PrivateKey } from '../../keys';
+import { PrivateKey } from '../../keys/secp';
 import * as schnorr from '../../schnorr';
 
 describe('Basic Schnorr', () => {

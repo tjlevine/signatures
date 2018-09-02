@@ -1,7 +1,8 @@
 import BigInteger from 'bigi';
 import ecurve from 'ecurve';
+
 import hash from '../hash';
-import { PublicKey } from '../keys';
+import { PublicKey } from '../keys/secp';
 import Signature from './Signature';
 
 const curve = ecurve.getCurveByName('secp256k1');
@@ -40,7 +41,7 @@ export default class Verifier {
     const c: BigInteger = BigInteger.fromBuffer(hash(preimage));
 
     // right side of verification equation is R + cQ
-    const right: ecurve.Point = bigR.add(this.pub.Q.multiply(c));
+    const right: ecurve.Point = bigR.add(this.pub.point.multiply(c));
 
     // left side is sG
     const left: ecurve.Point = curve.G.multiply(BigInteger.fromBuffer(this.sig.s));
