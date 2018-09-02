@@ -33,6 +33,19 @@ describe('Basic Schnorr', () => {
     expect(verifier.verify()).to.be.true;
   });
 
+  it('should not verify a bad signature', () => {
+    const { message, prv, sig: { R, s } } = fixtures.schnorr;
+
+    // deface signature
+    const defaced = s.concat('ff').substring(2);
+    const sig = new schnorr.Signature(R, defaced);
+    const messageBuf = Buffer.from(message);
+    const pub = new PrivateKey(prv).toPublicKey();
+    const verifier = new schnorr.Verifier(sig, pub, messageBuf);
+
+    expect(verifier.verify()).to.be.false;
+  });
+
   it('should sign and verify a random message with a random prv', () => {
     const messageBuf = randomBytes(128);
     const prv = new PrivateKey();
